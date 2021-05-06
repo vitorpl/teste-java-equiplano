@@ -26,9 +26,7 @@ export class ApoliceComponent implements OnInit {
       console.log(listaClientes);
       this.clientes = listaClientes;
     });
-    this.apoliceService.listar().subscribe(apolicesRetorno => {
-      this.apolices = apolicesRetorno;
-    });
+    this.atualizarTela();
   }
 
   salvarApolice() {
@@ -39,7 +37,7 @@ export class ApoliceComponent implements OnInit {
       //alert("Cliente salvo com sucesso!");
       //this.exibeMensagemSucesso = true;
       //this.limparCampos();
-      //this.atualizarTela();
+      this.atualizarTela();
     },
     exept => {
       //this.exibeMensagemErro = true;
@@ -47,12 +45,28 @@ export class ApoliceComponent implements OnInit {
     });
   }
 
-  editar() {
-
+  atualizarTela() {
+    this.apoliceService.listar().subscribe(apolicesRetorno => {
+      this.apolices = apolicesRetorno;
+    });
   }
 
-  remover() {
-    
+  editar(apoliceEdit: Apolice) {
+    console.log(apoliceEdit);
+    this.clienteSel = apoliceEdit.cliente;
+    this.apolice = {...apoliceEdit};
+  }
+
+  remover(apoliceDel: Apolice) {
+    this.apoliceService.remover(apoliceDel).subscribe( () => {
+      console.log('Apólice removida com sucesso');
+      this.atualizarTela();
+    },
+    exept => {
+      console.log(exept);
+      //this.exibeMensagemErro = true;
+      //this.mensagemErro = exept.error.message;
+    });
   }
 
 }
