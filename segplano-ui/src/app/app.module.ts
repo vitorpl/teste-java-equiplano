@@ -12,6 +12,7 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
+import { DadosApoliceComponent } from './dados-apolice/dados-apolice.component';
 
 
 registerLocaleData(localePt);
@@ -22,7 +23,8 @@ registerLocaleData(localePt);
     ClienteComponent,
     ApoliceComponent,
     PrincipalComponent,
-    PaginaNaoEncontradaComponent
+    PaginaNaoEncontradaComponent,
+    DadosApoliceComponent
   ],
   imports: [
     BrowserModule,

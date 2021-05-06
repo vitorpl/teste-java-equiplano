@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.segplano.api.exception.ApoliceNaoExisteException;
 import com.segplano.api.model.Apolice;
 import com.segplano.api.service.ApoliceService;
 
@@ -43,11 +45,20 @@ public class ApoliceController {
 	}
 	
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Apolice getApoliceById(@PathVariable Long id) throws Exception { //throws ClienteNotFoundException {
+    public Apolice getApoliceById(@PathVariable Long id) throws ApoliceNaoExisteException {
         Apolice apolice = apoliceService.getApoliceById(id);       		
         
         return apolice;
+    }
+    
+    @GetMapping("/numero/{numero}")
+    public @ResponseBody Apolice getApoliceByNumero(@PathVariable String numero) throws ApoliceNaoExisteException {
+    	return apoliceService.getApoliceByNumero(numero);       		
+    }
+    
+    @GetMapping("/placa/{placa}")
+    public @ResponseBody Apolice getApoliceByPlaca(@PathVariable String placa) throws ApoliceNaoExisteException {
+    	return apoliceService.getApoliceByPlaca(placa);       		
     }
 	
     @DeleteMapping("/{id}")

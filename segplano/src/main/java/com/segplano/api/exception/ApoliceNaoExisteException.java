@@ -12,4 +12,8 @@ public class ApoliceNaoExisteException extends Exception {
 		super("Apólice não encontrada para o id: "+id);		
 	}
 	
+	public ApoliceNaoExisteException(String codigo) {
+		super("Apólice não encontrada para o codigo ou placa: "+codigo);		
+	}
+	
 }

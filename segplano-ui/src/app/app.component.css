@@ -1,0 +1,12 @@
+.titulo {
+    text-align: center;
+    color: darkblue;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.sub-titulo {
+    text-align: center;
+    color: #006ace;
+    font-size: 1.5rem;
+}

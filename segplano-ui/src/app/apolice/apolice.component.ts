@@ -16,6 +16,11 @@ export class ApoliceComponent implements OnInit {
   cliente: Cliente = <Cliente>{};
   clienteSel: Cliente = <Cliente>{id: 0};
   clientes: Cliente[] = [];
+
+  //exibeMensagemSucesso = false;
+  //exibeMensagemErro = false;
+  mensagemErro = '';
+  mensagemSucesso = '';
    
   constructor(
     private clienteService: ClienteService, 
@@ -33,16 +38,19 @@ export class ApoliceComponent implements OnInit {
     this.apolice.cliente = this.clienteSel;
     console.log( Date.parse(this.apolice.inicioVigencia) );
     this.apoliceService.salvar(this.apolice).subscribe(apoliceSalva => {
-      console.log("Apolice salva com sucesso!");
-      //alert("Cliente salvo com sucesso!");
-      //this.exibeMensagemSucesso = true;
-      //this.limparCampos();
+      this.mensagemSucesso = "Apolice salva com sucesso!";
+      this.limparCampos();
       this.atualizarTela();
     },
     exept => {
-      //this.exibeMensagemErro = true;
-      //this.mensagemErro = exept.error.message;
+      this.mensagemSucesso = '';
+      this.mensagemErro = exept.error.message;
     });
+  }
+
+  limparCampos() {
+    this.apolice = <Apolice>{};
+    this.clienteSel = <Cliente>{id: 0};
   }
 
   atualizarTela() {
@@ -53,19 +61,21 @@ export class ApoliceComponent implements OnInit {
 
   editar(apoliceEdit: Apolice) {
     console.log(apoliceEdit);
+    this.mensagemSucesso = '';
+    this.mensagemErro = '';
     this.clienteSel = apoliceEdit.cliente;
     this.apolice = {...apoliceEdit};
   }
 
   remover(apoliceDel: Apolice) {
     this.apoliceService.remover(apoliceDel).subscribe( () => {
-      console.log('Apólice removida com sucesso');
+      this.mensagemSucesso = 'Apólice removida com sucesso';
       this.atualizarTela();
     },
     exept => {
       console.log(exept);
-      //this.exibeMensagemErro = true;
-      //this.mensagemErro = exept.error.message;
+      this.mensagemSucesso = '';
+      this.mensagemErro = exept.error.message;
     });
   }
 

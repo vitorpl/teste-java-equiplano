@@ -1,6 +1,6 @@
   <div class="container">
     <form #f="ngForm">
-    <h3>Cadastro de Apólices</h3> 
+    <div class="titulo-tela">Cadastro de Apólices</div> 
     <div class="row g-12">
       <div class="col-sm-6">
         <label for="cliente" class="form-label">Cliente</label>
@@ -90,6 +90,15 @@
         </p>
       </div>
     </div>
+
+    <div *ngIf="mensagemSucesso" class="alert alert-success alert-dismissible" role="alert">
+      {{mensagemSucesso}}
+    </div>
+
+    <div *ngIf="mensagemErro" class="alert alert-danger alert-dismissible" role="alert">
+      Ocorreu um erro ao salvar o cliente:<br/>
+      {{mensagemErro}}
+    </div>
     
       <nav>
         <a href="javascript: void(0)" routerLink="/">Voltar ao início</a>
@@ -105,6 +114,7 @@
           <th>Cliente</th>
           <th>Início Vigência</th>
           <th>Fim Vigência</th>
+          <th>Placa</th>
           <th>Valor</th>
           <th>Status</th>
         </tr>
@@ -115,9 +125,15 @@
           <td>{{apolice.cliente?.nome}}</td>
           <td>{{apolice.inicioVigencia | date: 'dd/MM/yyyy'}}</td>
           <td>{{apolice.fimVigencia | date: 'dd/MM/yyyy'}}</td>
+          <td>{{apolice.placa}}</td>
           <td>{{apolice.valor | currency:'BRL':'symbol':'1.2-2'}}</td>
-          <td [ngClass]="apolice.vencida ? 'destaque-vencida' : 'destaque-valida'"> 
-            {{apolice.vencida?'Vencida a '+apolice.diasVencimento+' dias':'Válida por '+apolice.diasParaVencimento + ' dias'}}
+          <td [ngClass]="apolice.vencida ? 'destaque-vencida' : 'destaque-valida'">
+            <span *ngIf="apolice.diasVencimento == 0 && apolice.diasParaVencimento == 0">
+                Vence Hoje!
+            </span> 
+            <span *ngIf="apolice.diasVencimento != 0 || apolice.diasParaVencimento > 0">
+              {{apolice.vencida?'Vencida a '+apolice.diasVencimento+' dias':'Válida por '+apolice.diasParaVencimento + ' dias'}}
+            </span>
             <!-- (apolice.vencida ? `Vencida a ${apolice.diasVencimento}` : `Válida por ${apolice.diasParaVencimento}`) -->
           </td>
           <td>

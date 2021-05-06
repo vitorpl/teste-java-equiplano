@@ -33,4 +33,15 @@ export class ApoliceService {
     return <Observable<any>>this.http.delete(
       this.URL + '/' + apolice.id);
   }
+
+  pesquisarPorPlaca(placa: string):  Observable<Apolice> {
+    return <Observable<Apolice>>this.http.get(
+      this.URL + '/placa/' + placa);
+  }
+
+  pesquisarPorNumero(numero: string):  Observable<Apolice> {
+    console.log(numero);
+    return <Observable<Apolice>>this.http.get(
+      this.URL + '/numero/' + numero);
+  }
 }

@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+.titulo-tela {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgba(97, 97, 97);
+}

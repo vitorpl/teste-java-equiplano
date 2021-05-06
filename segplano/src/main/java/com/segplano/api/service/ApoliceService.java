@@ -26,7 +26,7 @@ public class ApoliceService {
 	
 	public void salvar(Apolice apolice) throws Exception {
 		//validar cpf
-		if(dao.findByPlaca(apolice.getPlaca()) != null) {
+		if(dao.findByPlaca(apolice.getPlaca()).isPresent()) {
 			throw new ApoliceJaExisteException(apolice.getPlaca());
 		}
 		
@@ -61,8 +61,20 @@ public class ApoliceService {
 		
 	}
 
-	public Apolice getApoliceById(Long id) throws Exception {
+	public Apolice getApoliceById(Long id) throws ApoliceNaoExisteException {
 		Apolice apolice = dao.findById(id).orElseThrow(() -> new ApoliceNaoExisteException(id));
+		setExtraInfo(apolice);
+		return apolice;
+	}
+	
+	public Apolice getApoliceByNumero(String numero) throws ApoliceNaoExisteException {
+		Apolice apolice = dao.findByNumero(numero).orElseThrow(() -> new ApoliceNaoExisteException(numero));
+		setExtraInfo(apolice);
+		return apolice;
+	}
+	
+	public Apolice getApoliceByPlaca(String placa) throws ApoliceNaoExisteException {
+		Apolice apolice = dao.findByPlaca(placa).orElseThrow(() -> new ApoliceNaoExisteException(placa));
 		setExtraInfo(apolice);
 		return apolice;
 	}

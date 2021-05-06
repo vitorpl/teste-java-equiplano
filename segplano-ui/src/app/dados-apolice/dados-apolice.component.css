@@ -1,0 +1,9 @@
+.data-label {
+    font-weight: bold;
+    color: darkblue;
+    text-align: right;
+}
+
+.data-label-content {
+    text-align: left;
+}
