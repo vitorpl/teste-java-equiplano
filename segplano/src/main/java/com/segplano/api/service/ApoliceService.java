@@ -120,7 +120,21 @@ public class ApoliceService {
 	public String gerarNumeroApolice() {
 		Calendar cal = Calendar.getInstance();
 		Random rnd = new Random(cal.getTimeInMillis());
-		return String.valueOf(Math.abs(rnd.nextLong())); 
+		String numero = String.valueOf(Math.abs(rnd.nextLong()));
+		//String numero = "25160459539644890";
+		
+		//verifica se o número gerado é igual a algum já existente
+		try {
+			while(getApoliceByNumero(numero) != null) {
+				System.out.println("conflito de número gerando outro..");
+				rnd = new Random(cal.getTimeInMillis());
+				numero = String.valueOf(Math.abs(rnd.nextLong()));
+			}
+		} catch (ApoliceNaoExisteException e) {
+			System.out.println("Código gerado: "+numero);
+		}
+		
+		return numero; 
 	}
 	
 }

@@ -117,6 +117,7 @@
           <th>Placa</th>
           <th>Valor</th>
           <th>Status</th>
+          <th>&nbsp;</th>
         </tr>
       </thead>
       <tbody>
@@ -137,11 +138,11 @@
             <!-- (apolice.vencida ? `Vencida a ${apolice.diasVencimento}` : `Válida por ${apolice.diasParaVencimento}`) -->
           </td>
           <td>
-            <a href="javascript: void(0)" (click)="editar(apolice)">
-              <img src="assets/edit.svg" width="20px" height="20px" style="text-decoration: none;"> &nbsp;
+            <a href="javascript: void(0)" (click)="editar(apolice)" style="text-decoration: none;">
+              <img src="assets/edit.svg" width="20px" height="20px" > &nbsp;
             </a>
-            <a href="javascript: void(0)" (click)="remover(apolice)">
-              <img src="assets/trash.svg" width="20px" height="20px" style="text-decoration: none;"> 
+            <a href="javascript: void(0)" (click)="remover(apolice)" style="text-decoration: none;">
+              <img src="assets/trash.svg" width="20px" height="20px" > 
             </a>
           </td>
         </tr>

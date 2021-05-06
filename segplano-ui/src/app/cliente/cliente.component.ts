@@ -5,6 +5,7 @@ import { Cliente } from '../model/cliente';
 import { EstadoService } from '../services/estado.service';
 import { CidadeService } from '../services/cidade.service';
 import { ClienteService } from '../services/cliente.service';
+import { Util } from '../util/util';
 
 @Component({
   selector: 'app-cliente',
@@ -28,6 +29,7 @@ export class ClienteComponent implements OnInit {
   exibeMensagemSucesso = false;
   exibeMensagemErro = false;
   mensagemErro = '';
+  cpfValido = true;
 
   constructor(
     private clienteService: ClienteService,
@@ -105,6 +107,10 @@ export class ClienteComponent implements OnInit {
       this.exibeMensagemErro = true;
       this.mensagemErro = exept.error.message;
     });
+  }
+
+  validaCpf() {
+    this.cpfValido = Util.isCPFValido(this.cliente.cpf);
   }
 
 }

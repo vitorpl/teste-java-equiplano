@@ -1,17 +1,42 @@
 
-
-
-<div style="text-align:center">
- 
-
-  <p>  
-    <a href="javascript: void(0)" routerLink="/cadastroCliente">Novo Cliente</a> 
-    &nbsp;&nbsp;
-    <a href="javascript: void(0)" routerLink="/cadastroApolice">Registrar Apólice</a> 
-  </p>
-
-
-  <app-dados-apolice></app-dados-apolice>
-
-
+<div class="container">
+<div class="row row-cols-1 row-cols-md-4 g-4">
+  <div class="col"></div>
+  <div class="col">
+    <div class="card h-100">
+      <a href="javascript: void(0)" routerLink="/cadastroCliente">
+        <img src="assets/adduser.svg" class="card-img-top" alt="Gerencie os seus clientes" width="200px" height="200px">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title">Clientes</h5>
+        <p class="card-text">São a peça mais importante do seu negócio! Aqui você poderá gerenciar os clientes segurados!</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">
+          <a href="javascript: void(0)" routerLink="/cadastroCliente">Gerenciar Clientes</a>
+        </small>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+      <a href="javascript: void(0)" routerLink="/cadastroApolice">
+        <img src="assets/deal.svg" class="card-img-top" alt="Gerencie os seus clientes" width="200px" height="200px">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title">Apólices</h5>
+        <p class="card-text">Gerencie as apólices de clientes com facilidade, não esqueça de avisá-los quando o vencimento estiver próximo!</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">
+          <a href="javascript: void(0)" routerLink="/cadastroApolice">Gerenciar Apólices</a>
+        </small>
+      </div>
+    </div>
+  </div>
 </div>
+</div>
+
+<p style="text-align:center"><br/>
+  <app-dados-apolice></app-dados-apolice>
+</p>

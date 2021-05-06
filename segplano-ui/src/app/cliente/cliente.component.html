@@ -19,11 +19,13 @@
         <label for="cpf" class="form-label">CPF</label>
         <input type="text" class="form-control" 
         pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}"
+          (keyup)="validaCpf()"
+          (blur)="validaCpf()"
           id="cpf" 
           [(ngModel)]="cliente.cpf"
           name="cpf" #cpf="ngModel"
           required />
-        <div *ngIf="cpf.invalid && cpf.touched" class="error" >
+        <div *ngIf="(cpf.invalid && cpf.touched) || !cpfValido" class="error" >
           CPF está inválido
         </div>
         <div *ngIf="cpf.value == '' && cpf.touched" class="error" >
@@ -71,7 +73,7 @@
     <div class="col-sm-12 text-center">
       <p><br/>
         <button class="btn btn-primary"
-        [disabled]="f.invalid" (click)="salvarCliente()"
+        [disabled]="f.invalid || !cpfValido" (click)="salvarCliente()"
          type="submit">Salvar</button>
       </p>
     </div>
@@ -85,6 +87,9 @@
       {{mensagemErro}}
     </div>
 
+    <nav>
+      <a href="javascript: void(0)" routerLink="/">Voltar ao início</a>
+    </nav>
 
     <section id="listaClientes">
       <table class="table table-striped table-hove">
@@ -116,9 +121,7 @@
       </table>
     </section>
 
-    <nav>
-      <a href="javascript: void(0)" routerLink="/">Voltar ao início</a>
-    </nav>
+
 
   </div>
 

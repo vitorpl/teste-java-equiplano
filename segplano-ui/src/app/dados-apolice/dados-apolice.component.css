@@ -7,3 +7,8 @@
 .data-label-content {
     text-align: left;
 }
+
+.text-inform  {
+    font-style: italic;
+    color: orangered;
+}

@@ -28,7 +28,7 @@ public class ClienteController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public void salvar(@RequestBody @Valid Cliente cliente) throws Exception {		
+	public void salvar(@RequestBody @Valid Cliente cliente) throws Exception {
 		clienteService.salvar(cliente);
 	}
 	
