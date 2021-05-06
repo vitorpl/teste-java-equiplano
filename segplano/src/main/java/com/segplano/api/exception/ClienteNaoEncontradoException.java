@@ -14,4 +14,8 @@ public class ClienteNaoEncontradoException extends Exception {
 		super("Não foi encontrado um cliente com os parâmetros informados: "+cliente);		
 	}
 	
+	public ClienteNaoEncontradoException(Long id) {
+		super("Não foi encontrado um cliente com os parâmetros informados: ID: "+id);		
+	}
+	
 }

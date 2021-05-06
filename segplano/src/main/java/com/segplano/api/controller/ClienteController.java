@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.segplano.api.exception.ClienteNaoEncontradoException;
+import com.segplano.api.exception.ExclusaoClienteComApolicesException;
 import com.segplano.api.model.Cliente;
 import com.segplano.api.service.ClienteService;
 
@@ -48,7 +50,7 @@ public class ClienteController {
 	
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable Long id) { //throws ClienteNotFoundException {
+    public void deleteById(@PathVariable Long id) throws ClienteNaoEncontradoException, ExclusaoClienteComApolicesException { //throws ClienteNotFoundException {
         clienteService.deleteById(id);
     }
     

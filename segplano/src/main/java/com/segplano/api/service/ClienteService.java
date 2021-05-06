@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.segplano.api.exception.ClienteCpfJaExisteException;
+import com.segplano.api.exception.ClienteNaoEncontradoException;
+import com.segplano.api.exception.ExclusaoClienteComApolicesException;
+import com.segplano.api.model.Apolice;
 import com.segplano.api.model.Cliente;
+import com.segplano.api.repository.ApoliceDao;
 import com.segplano.api.repository.ClienteDao;
 
 @Service
@@ -15,6 +19,9 @@ public class ClienteService {
 
 	@Autowired
 	private ClienteDao dao;
+	
+	@Autowired 
+	private ApoliceDao apoliceDao;
 	
 	
 	public void salvar(Cliente cliente) throws Exception {
@@ -34,7 +41,16 @@ public class ClienteService {
 		return dao.findAll();
 	}
 
-	public void deleteById(Long id) {
+	public void deleteById(Long id) throws ClienteNaoEncontradoException, ExclusaoClienteComApolicesException {
+		
+		Cliente cli = dao.findById(id).orElseThrow(() -> new ClienteNaoEncontradoException(id));
+		
+		List<Apolice> aps = apoliceDao.findByCliente(cli);
+		
+		if(aps.size() > 0) {
+			throw new ExclusaoClienteComApolicesException(cli);
+		}
+		
 		dao.deleteById(id);		
 	}
 

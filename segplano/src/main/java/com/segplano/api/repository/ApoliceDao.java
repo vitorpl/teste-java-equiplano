@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.segplano.api.model.Apolice;
+import com.segplano.api.model.Cliente;
 
 public interface ApoliceDao extends JpaRepository<Apolice, Long>{
 
@@ -17,5 +18,7 @@ public interface ApoliceDao extends JpaRepository<Apolice, Long>{
 
 	public Optional<Apolice> findByNumero(String numero);
 	public Optional<Apolice> findByPlaca(String placa);
+
+	public List<Apolice> findByCliente(Cliente cli);
 
 }
