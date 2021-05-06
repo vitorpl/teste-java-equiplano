@@ -1,4 +1,18 @@
 export class Util {
+
+    public static getBaseUrl(): string {
+        //desenv na porta 4200
+        //return 'http://localhost:8080/';
+
+        //para gerar um jar
+        return window.location.origin+'/';
+        //ng build --prod
+
+        //para gerar o war
+        //return window.location.origin+'/segplano/';
+        //ng build --prod --deploy-url segplano/ --base-href /segplano
+    }
+
     public static isCPFValido(cpf: string): boolean {
 
         cpf = cpf.replace(/[^0-9]/g,'');

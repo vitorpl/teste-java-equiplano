@@ -139,10 +139,10 @@
           </td>
           <td>
             <a href="javascript: void(0)" (click)="editar(apolice)" style="text-decoration: none;">
-              <img src="assets/edit.svg" width="20px" height="20px" > &nbsp;
+              <img [src]="editImage" width="20px" height="20px" > &nbsp;
             </a>
             <a href="javascript: void(0)" (click)="remover(apolice)" style="text-decoration: none;">
-              <img src="assets/trash.svg" width="20px" height="20px" > 
+              <img [src]="deleteImage" width="20px" height="20px" > 
             </a>
           </td>
         </tr>

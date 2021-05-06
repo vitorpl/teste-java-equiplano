@@ -31,6 +31,9 @@ export class ClienteComponent implements OnInit {
   mensagemErro = '';
   cpfValido = true;
 
+  editImage: string = Util.getBaseUrl()+'assets/edit.svg'
+  deleteImage: string = Util.getBaseUrl()+'assets/trash.svg'
+
   constructor(
     private clienteService: ClienteService,
     private estadoService: EstadoService,

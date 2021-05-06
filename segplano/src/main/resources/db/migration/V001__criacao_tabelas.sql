@@ -29,8 +29,8 @@ CREATE TABLE cliente (
 
 CREATE TABLE apolice (
   id bigint(20) NOT NULL AUTO_INCREMENT,
-  fim_vigencia datetime(6) NOT NULL,
-  inicio_vigencia datetime(6) NOT NULL,
+  fim_vigencia date NOT NULL,
+  inicio_vigencia date NOT NULL,
   numero varchar(255) DEFAULT NULL,
   placa varchar(255) DEFAULT NULL,
   valor decimal(19,2) NOT NULL,

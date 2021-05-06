@@ -3,14 +3,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cidade } from '../model/cidade';
 import { Estado } from '../model/estado';
+import { Util } from '../util/util';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CidadeService {
 
-  private readonly URL = 'http://localhost:8080/api/cidades';
-  private readonly URL_LISTAR_POR_ESTADO = 'http://localhost:8080/api/cidades/estado';
+  private readonly URL = Util.getBaseUrl()+'api/cidades';
+  private readonly URL_LISTAR_POR_ESTADO = Util.getBaseUrl()+'api/cidades/estado';
 
   constructor(private http: HttpClient) { }
 

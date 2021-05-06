@@ -110,19 +110,15 @@
             <td>{{cliente.cidade.estado.nome}}</td>
             <td>
               <a href="javascript: void(0)" (click)="editar(cliente)">
-                <img src="assets/edit.svg" width="20px" height="20px" style="text-decoration: none;"> &nbsp;
+                <img [src]="editImage" width="20px" height="20px" style="text-decoration: none;"> &nbsp;
               </a>
               <a href="javascript: void(0)" (click)="remover(cliente)">
-                <img src="assets/trash.svg" width="20px" height="20px" style="text-decoration: none;"> 
+                <img [src]="deleteImage" width="20px" height="20px" style="text-decoration: none;"> 
               </a>
             </td>
           </tr>
         </tbody>
       </table>
     </section>
-
-
-
   </div>
-
 </form>

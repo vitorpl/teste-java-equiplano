@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Apolice } from '../model/apolice';
+import { Util } from '../util/util';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { Apolice } from '../model/apolice';
 export class ApoliceService {
 
   
-  private readonly URL = 'http://localhost:8080/api/apolices';
+  private readonly URL = Util.getBaseUrl()+'api/apolices';
 
   constructor(private http: HttpClient) { }
 

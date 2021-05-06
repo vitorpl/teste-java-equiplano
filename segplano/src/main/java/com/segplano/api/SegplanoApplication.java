@@ -11,12 +11,13 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.i18n.FixedLocaleResolver;
 
 @SpringBootApplication
-public class SegplanoApplication {
+public class SegplanoApplication extends SpringBootServletInitializer { //extends SpringBootServletInitializer para war
 
 	public static void main(String[] args) {
 		SpringApplication.run(SegplanoApplication.class, args);

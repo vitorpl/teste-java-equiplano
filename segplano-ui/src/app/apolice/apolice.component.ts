@@ -3,6 +3,7 @@ import { Apolice } from '../model/apolice';
 import { Cliente } from '../model/cliente';
 import { ApoliceService } from '../services/apolice.service';
 import { ClienteService } from '../services/cliente.service';
+import { Util } from '../util/util';
 
 @Component({
   selector: 'app-apolice',
@@ -21,6 +22,9 @@ export class ApoliceComponent implements OnInit {
   //exibeMensagemErro = false;
   mensagemErro = '';
   mensagemSucesso = '';
+
+  editImage: string = Util.getBaseUrl()+'assets/edit.svg'
+  deleteImage: string = Util.getBaseUrl()+'assets/trash.svg'
    
   constructor(
     private clienteService: ClienteService, 

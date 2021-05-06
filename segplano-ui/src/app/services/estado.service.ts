@@ -2,13 +2,14 @@ import { Estado } from './../model/estado';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Util } from '../util/util';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstadoService {
 
-  private readonly URL = 'http://localhost:8080/api/estados';
+  private readonly URL = Util.getBaseUrl()+'api/estados';
 
   constructor(private http: HttpClient) { }
 

@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cliente } from '../model/cliente';
+import { Util } from '../util/util';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
 
-  private readonly URL = 'http://localhost:8080/api/clientes';
+  private readonly URL = Util.getBaseUrl()+'api/clientes';
 
   constructor(private http: HttpClient) { }
 

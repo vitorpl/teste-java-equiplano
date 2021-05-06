@@ -42,7 +42,6 @@ export class DadosApoliceComponent implements OnInit {
         console.log(apoliceRetornoPesquisa);
       },
       except => {
-
         if(except.message.includes('404')) {
           this.mensagemErro = except.error.message;
         }
