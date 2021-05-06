@@ -1,0 +1,125 @@
+<form #f="ngForm">
+
+  <div class="container">
+    <h3>Cadastro de clientes</h3> 
+    <div class="row g-12">
+      <div class="col-sm-6">
+        <label for="firstName" class="form-label">Nome</label>
+        <input type="text" class="form-control" 
+          id="nome" placeholder="" value=""
+          [(ngModel)]="cliente.nome"
+          name="nome" #nome="ngModel"
+          required />
+        <div *ngIf="nome.invalid && nome.touched" class="error">
+          Nome é obrigatório.
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+        <label for="cpf" class="form-label">CPF</label>
+        <input type="text" class="form-control" 
+        pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}"
+          id="cpf" 
+          [(ngModel)]="cliente.cpf"
+          name="cpf" #cpf="ngModel"
+          required />
+        <div *ngIf="cpf.invalid && cpf.touched" class="error" >
+          CPF está inválido
+        </div>
+        <div *ngIf="cpf.value == '' && cpf.touched" class="error" >
+          CPF é obrigatório
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <label for="estado" class="form-label">Estado</label>
+        <select id="estado" class="form-select" 
+        (change)="mudaEstado()"
+        [(ngModel)]="estadoSel.id"
+        name="estado" #estado="ngModel"
+        required >
+          <option *ngFor="let estado of estados" 
+            [value]="estado.id">
+            {{estado.nome}} - {{estado.sigla}}
+          </option>
+        </select>
+
+        <div *ngIf="estado.invalid && estado.touched" class="error" >
+          Informe o Estado
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <label for="cidade" class="form-label">Cidade</label>
+        <select id="cidade" class="form-select"
+        
+        [(ngModel)]="cidadeSel.id"
+        name="cidade" #cidade="ngModel"
+        required>
+          <option [value]="cidade?.id" *ngFor="let cidade of cidades">
+            {{cidade.nome}}
+          </option>        
+        </select>
+        <div *ngIf="loadingCidade">Aguarde carregando..</div>
+
+        <div *ngIf="cidade.invalid && cidade.touched" class="error" >
+          Informe a Cidade
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 text-center">
+      <p><br/>
+        <button class="btn btn-primary"
+        [disabled]="f.invalid" (click)="salvarCliente()"
+         type="submit">Salvar</button>
+      </p>
+    </div>
+
+    <div *ngIf="exibeMensagemSucesso" class="alert alert-success alert-dismissible" role="alert">
+      O cliente foi salvo com sucesso!
+    </div>
+
+    <div *ngIf="exibeMensagemErro" class="alert alert-danger alert-dismissible" role="alert">
+      Ocorreu um erro ao salvar o cliente:<br/>
+      {{mensagemErro}}
+    </div>
+
+
+    <section id="listaClientes">
+      <table class="table table-striped table-hove">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of listaClientes">
+            <td>{{cliente.nome}}</td>
+            <td>{{cliente.cpf}}</td>
+            <td>{{cliente.cidade.nome}}</td>
+            <td>{{cliente.cidade.estado.nome}}</td>
+            <td>
+              <a href="javascript: void(0)" (click)="editar(cliente)">
+                <img src="assets/edit.svg" width="20px" height="20px" style="text-decoration: none;"> &nbsp;
+              </a>
+              <a href="javascript: void(0)" (click)="remover(cliente)">
+                <img src="assets/trash.svg" width="20px" height="20px" style="text-decoration: none;"> 
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <nav>
+      <a href="javascript: void(0)" routerLink="/">Voltar ao início</a>
+    </nav>
+
+  </div>
+
+</form>

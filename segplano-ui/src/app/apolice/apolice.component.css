@@ -1,0 +1,9 @@
+.destaque-vencida {
+  font-weight: bold;
+  color: red;
+}
+
+.destaque-valida {
+    font-weight: bold;
+    color: darkgreen;
+}
