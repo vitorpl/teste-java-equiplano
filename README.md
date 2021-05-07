@@ -6,8 +6,9 @@ Olá, obrigado por avaliar o pequeno sistema que desenvolvi para o teste na EQUI
 ### Backend
 * Banco MySql
 * Java Spring Boot
-* Spring Data Jpa
+* Spring Data Jpa (Hibernate)
 * Flyway
+* Swagger
 
 ### Frontend
 * Angular 
