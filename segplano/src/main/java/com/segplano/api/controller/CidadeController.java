@@ -20,8 +20,12 @@ import com.segplano.api.model.Cidade;
 import com.segplano.api.model.Estado;
 import com.segplano.api.service.CidadeService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("api/cidades")
+@Api("API REST de Cidades")
 public class CidadeController {
 
 	@Autowired
@@ -29,42 +33,47 @@ public class CidadeController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
+	@ApiOperation("Salva uma nova cidade")
 	public void salvar(@RequestBody @Valid Cidade cidade) throws Exception {		
 		cidadeService.salvar(cidade);
 	}
 	
 	@GetMapping
+	@ApiOperation("Lista todas as cidades")
 	public List<Cidade> listarCidades() {
 		return cidadeService.listar();
 	}
 	
 	@GetMapping("/estado/{estado}")
+	@ApiOperation("Lista todas as cidades filtrando por estado")
 	public List<Cidade> listarCidadesPorIdEstado(@PathVariable Estado estado) {
 		return cidadeService.listarPorEstado(estado);
 	}
 	
-    @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Cidade getCidadeById(@PathVariable Long id) throws Exception { //throws ClienteNotFoundException {
-        Cidade cidade = cidadeService.getById(id)
-        		.orElseThrow(() -> new Exception("Cidade não encontrada"));
-        
-        return cidade;
-    }
+	@GetMapping("/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@ApiOperation("Reupera uma cidade por seu id")
+	public Cidade getCidadeById(@PathVariable Long id) throws Exception { //throws ClienteNotFoundException {
+	    Cidade cidade = cidadeService.getById(id)
+	    		.orElseThrow(() -> new Exception("Cidade não encontrada"));
+	    
+	    return cidade;
+	}
 	
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable Long id) { //throws ClienteNotFoundException {
-        cidadeService.deleteById(id);
-    }
-    
-    @PatchMapping()
-    public void alterar(@RequestBody @Valid Cidade cidade) throws Exception {
-    	cidadeService.getById(cidade.getId())
-    		.orElseThrow(() -> new Exception("Cidade não encontrada ao editar"));
-    	
-    	cidadeService.atualizar(cidade);    
-    }
-    
+	@DeleteMapping("/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@ApiOperation("Deleta uma cidade por seu id")
+	public void deleteById(@PathVariable Long id) { //throws ClienteNotFoundException {
+	    cidadeService.deleteById(id);
+	}
+	
+	@PatchMapping()
+	@ApiOperation("Edita uma cidade")
+	public void alterar(@RequestBody @Valid Cidade cidade) throws Exception {
+		cidadeService.getById(cidade.getId())
+			.orElseThrow(() -> new Exception("Cidade não encontrada ao editar"));
+		
+		cidadeService.atualizar(cidade);    
+	}   
     
 }

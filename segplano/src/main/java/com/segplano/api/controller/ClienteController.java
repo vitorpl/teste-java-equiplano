@@ -21,8 +21,12 @@ import com.segplano.api.exception.ExclusaoClienteComApolicesException;
 import com.segplano.api.model.Cliente;
 import com.segplano.api.service.ClienteService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("api/clientes")
+@Api("API REST de Clientes")
 public class ClienteController {
 
 	@Autowired
@@ -30,37 +34,40 @@ public class ClienteController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
+	@ApiOperation("Salva um novo cliente")
 	public void salvar(@RequestBody @Valid Cliente cliente) throws Exception {
 		clienteService.salvar(cliente);
 	}
 	
 	@GetMapping
+	@ApiOperation("Lista todos os clientes")
 	public List<Cliente> listarClientes() {
 		return clienteService.listar();
 	}
 	
-    @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Cliente getClienteById(@PathVariable Long id) throws Exception { //throws ClienteNotFoundException {
-        Cliente cliente = clienteService.getClienteById(id)
-        		.orElseThrow(() -> new Exception("Cliente não encontrado"));
-        
-        return cliente;
-    }
+	@GetMapping("/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@ApiOperation("Recupera um cliente por seu id")
+	public Cliente getClienteById(@PathVariable Long id) throws Exception { //throws ClienteNotFoundException {
+	    Cliente cliente = clienteService.getClienteById(id)
+	    		.orElseThrow(() -> new Exception("Cliente não encontrado"));
+	    
+	    return cliente;
+	}
 	
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable Long id) throws ClienteNaoEncontradoException, ExclusaoClienteComApolicesException { //throws ClienteNotFoundException {
-        clienteService.deleteById(id);
-    }
-    
-    @PatchMapping()
-    public void alterar(@RequestBody @Valid Cliente cliente) throws Exception {
-    	clienteService.getClienteById(cliente.getId())
-    		.orElseThrow(() -> new Exception("Cliente não encontrado ao editar"));
-    	
-    	clienteService.atualizar(cliente);    
-    }
-    
-    
+	@DeleteMapping("/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@ApiOperation("Deleta um cliente por seu id")
+	public void deleteById(@PathVariable Long id) throws ClienteNaoEncontradoException, ExclusaoClienteComApolicesException { //throws ClienteNotFoundException {
+	    clienteService.deleteById(id);
+	}
+	
+	@PatchMapping()
+	@ApiOperation("Altera dados de um cliente")
+	public void alterar(@RequestBody @Valid Cliente cliente) throws Exception {
+		clienteService.getClienteById(cliente.getId())
+			.orElseThrow(() -> new Exception("Cliente não encontrado ao editar"));
+		
+		clienteService.atualizar(cliente);    
+	}    
 }

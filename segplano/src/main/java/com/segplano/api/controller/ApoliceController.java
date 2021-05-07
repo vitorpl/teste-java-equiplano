@@ -21,8 +21,12 @@ import com.segplano.api.exception.ApoliceNaoExisteException;
 import com.segplano.api.model.Apolice;
 import com.segplano.api.service.ApoliceService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("api/apolices")
+@Api("API REST de Apólices")
 public class ApoliceController {
 
 	@Autowired
@@ -30,51 +34,58 @@ public class ApoliceController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
+	@ApiOperation("Salva uma nova apólice")
 	public void salvar(@RequestBody @Valid Apolice apolice) throws Exception {	
 		apoliceService.salvar(apolice);
 	}
 	
 	@GetMapping
+	@ApiOperation("Lista todas as apólices")
 	public List<Apolice> listarApolices() {
 		return apoliceService.listar();
 	}
 	
 	@GetMapping("/vencidas")
+	@ApiOperation("Lista todas as apólices vencidas")
 	public List<Apolice> listarApolicesVencidas() {
 		return apoliceService.listarApolicesVencidas();
 	}
 	
-    @GetMapping("/{id}")
-    public Apolice getApoliceById(@PathVariable Long id) throws ApoliceNaoExisteException {
-        Apolice apolice = apoliceService.getApoliceById(id);       		
-        
-        return apolice;
-    }
-    
-    @GetMapping("/numero/{numero}")
-    public @ResponseBody Apolice getApoliceByNumero(@PathVariable String numero) throws ApoliceNaoExisteException {
-    	return apoliceService.getApoliceByNumero(numero);       		
-    }
-    
-    @GetMapping("/placa/{placa}")
-    public @ResponseBody Apolice getApoliceByPlaca(@PathVariable String placa) throws ApoliceNaoExisteException {
-    	return apoliceService.getApoliceByPlaca(placa);       		
-    }
+	@GetMapping("/{id}")
+	@ApiOperation("Recupera uma apólice por seu id")
+	public Apolice getApoliceById(@PathVariable Long id) throws ApoliceNaoExisteException {
+	    Apolice apolice = apoliceService.getApoliceById(id);       		
+	    
+	    return apolice;
+	}
 	
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable Long id) { //throws ClienteNotFoundException {
-    	apoliceService.deleteById(id);
-    }
-    
-    @PatchMapping()
-    public void alterar(@RequestBody @Valid Apolice apolice) throws Exception {
-    	if(apoliceService.getApoliceById(apolice.getId()) == null) {
-    		throw new Exception("Apólice não encontrada");
-    	}
-    	
-    	apoliceService.atualizar(apolice);    
-    }
-    
+	@GetMapping("/numero/{numero}")
+	@ApiOperation("Recupera uma apólice por seu numero")
+	public @ResponseBody Apolice getApoliceByNumero(@PathVariable String numero) throws ApoliceNaoExisteException {
+		return apoliceService.getApoliceByNumero(numero);       		
+	}
+	
+	@GetMapping("/placa/{placa}")
+	@ApiOperation("Recupera uma apólice pela placa do veículo")
+	public @ResponseBody Apolice getApoliceByPlaca(@PathVariable String placa) throws ApoliceNaoExisteException {
+		return apoliceService.getApoliceByPlaca(placa);       		
+	}
+	
+	@DeleteMapping("/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@ApiOperation("Deleta uma apólice pelo seu id")
+	public void deleteById(@PathVariable Long id) { //throws ClienteNotFoundException {
+		apoliceService.deleteById(id);
+	}
+	
+	@PatchMapping()
+	@ApiOperation("Altera dados de uma apólice")
+	public void alterar(@RequestBody @Valid Apolice apolice) throws Exception {
+		if(apoliceService.getApoliceById(apolice.getId()) == null) {
+			throw new Exception("Apólice não encontrada");
+		}
+		
+		apoliceService.atualizar(apolice);    
+	}   
     
 }
