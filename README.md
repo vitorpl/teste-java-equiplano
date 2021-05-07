@@ -31,4 +31,4 @@ através da linha de comando execute:
 Também é possível executar o arquivo .war em um tomcat local.
 
 
-obs: Tive algumas dificuldades em gerar um container docker no doker hub. Portanto vou ficar devendo esse ponto extra.
+obs: Tive algumas dificuldades em gerar uma imagem docker no doker hub. Portanto vou ficar devendo esse ponto extra.
