@@ -33,6 +33,10 @@ Também é possível executar o arquivo .war em um tomcat local.
 Pode-se testar a API utilizando o Postman importando o arquivo:
 `SegPlano.postman_collection.json`
 
+Caso queira também utilizei o swagger para facilitar a visualização da API:
+Ex:
+[http://localhost:8080/swagger-ui/]
+
 Descrição da API:
 
 **Cliente**
