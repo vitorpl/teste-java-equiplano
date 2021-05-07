@@ -12,6 +12,7 @@ Olá, obrigado por avaliar o pequeno sistema que desenvolvi para o teste na EQUI
 
 ### Frontend
 * Angular 
+* Boostrap
 
 ## Como executar
 
