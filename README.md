@@ -34,8 +34,9 @@ Pode-se testar a API utilizando o Postman importando o arquivo:
 `SegPlano.postman_collection.json`
 
 Caso queira também utilizei o swagger para facilitar a visualização da API:
-Ex:
-[http://localhost:8080/swagger-ui/]
+
+Ex: 
+(http://localhost:8080/swagger-ui/) / (http://localhost:8080/segplano/swagger-ui/)
 
 Descrição da API:
 
